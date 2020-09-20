@@ -1,28 +1,29 @@
 <template>
     <v-app>
-      <div class="app mx-auto">
-         <v-list>
-      <v-list-item
-            v-for="wish in wishes"
-            :key="wish.id"
-            link
-          @click.stop="goToLink(wish.id)">
-            <v-row>
-            <v-col>
-              <v-list-item-content>
-              <v-list-item-title><h3><strong>{{wish.wish_name}} / {{wish.price}}</strong></h3></v-list-item-title>
-              <v-list-item-subtitle> <h5>{{wish.description}}</h5></v-list-item-subtitle>
-              <v-list-item-subtitle>Wish from: {{ wish.name }}</v-list-item-subtitle>
+      <div class="app mx-auto d-flex">
+        <v-card v-for="wish in wishes" :key="wish.id"
+          max-width="344"
+          class="m-2"
+          @click="goToLink(wish.id)"
+        >
+          <v-list-item>
+            <v-list-item-avatar color="grey"></v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title class="headline">{{wish.wish_name}}</v-list-item-title>
+              <v-list-item-subtitle>by {{wish.name}}</v-list-item-subtitle>
             </v-list-item-content>
-            </v-col>
-            <v-col>
-              <div class="">
-              <v-img class="picture" :src="wish.wish_image" v-if="images_available" ></v-img>
-            </div>
-            </v-col>
-            </v-row>
           </v-list-item>
-        </v-list>
+
+          <v-img
+            :src="wish.wish_image"
+            height="194"
+            v-if="images_available"
+          ></v-img>
+
+          <v-card-text>
+            {{wish.description}}
+          </v-card-text>
+        </v-card>
       </div>
     </v-app>
 </template>
@@ -38,7 +39,6 @@ export default {
       }
     },
     mounted(){
-        s
       if(this.wishes.length !== 0){
         this.addPathImage();
       }

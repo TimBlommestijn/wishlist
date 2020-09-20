@@ -97,8 +97,16 @@ class WishController extends Controller
      */
     public function edit(Wish $wish)
     {
-        $wishes = Wish::find($wish->id);
-        return view('editWish')->with('wish', $wishes);
+        if(Auth::user()->admin){
+            $wishes = Wish::find($wish->id);
+            return view('editWish')->with('wish', $wishes);
+        }else if(Auth::user()->id == $wish->uuid){
+            $wishes = Wish::find($wish->id);
+            return view('editWish')->with('wish', $wishes);
+        }else{
+            return redirect('/');
+        }
+        
     }
 
     /**
@@ -110,13 +118,23 @@ class WishController extends Controller
      */
     public function update(Request $request, Wish $wish)
     {
-        //
-        $wish->wish_name = $request->name;
-        $wish->description = $request->description;
-        $wish->price = $request->price;
-        $wish->url = $request->url;
-        $wish->push();
-        return redirect('/wish/'.$wish->id);
+        if(Auth::user()->admin){
+            $wish->wish_name = $request->name;
+            $wish->description = $request->description;
+            $wish->price = $request->price;
+            $wish->url = $request->url;
+            $wish->push();
+            return redirect('/wish/'.$wish->id);
+        }else if(Auth::user()->id == $wish->uuid){
+            $wish->wish_name = $request->name;
+            $wish->description = $request->description;
+            $wish->price = $request->price;
+            $wish->url = $request->url;
+            $wish->push();
+            return redirect('/wish/'.$wish->id);
+        }else{
+            return redirect('/');
+        }
     }
 
     /**
@@ -126,7 +144,15 @@ class WishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Wish $wish){
-        $wish->destroy($wish->id);
-        return redirect('/wish');
+        if(Auth::user()->admin){
+            $wish->destroy($wish->id);
+            return redirect('/wish');
+        }else if(Auth::user()->id == $wish->uuid){
+            $wish->destroy($wish->id);
+            return redirect('/wish');
+        }else{
+            return redirect('/');
+        }
+        
     }
 }
