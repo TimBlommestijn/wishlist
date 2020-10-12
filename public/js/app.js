@@ -2522,6 +2522,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     wishes: Array
@@ -2532,8 +2533,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    s;
-
     if (this.wishes.length !== 0) {
       this.addPathImage();
     }
@@ -41896,84 +41895,54 @@ var render = function() {
   return _c("v-app", [
     _c(
       "div",
-      { staticClass: "app mx-auto" },
-      [
-        _c(
-          "v-list",
-          _vm._l(_vm.wishes, function(wish) {
-            return _c(
+      { staticClass: "app mx-auto d-flex" },
+      _vm._l(_vm.wishes, function(wish) {
+        return _c(
+          "v-card",
+          {
+            key: wish.id,
+            staticClass: "m-2",
+            attrs: { "max-width": "344" },
+            on: {
+              click: function($event) {
+                return _vm.goToLink(wish.id)
+              }
+            }
+          },
+          [
+            _c(
               "v-list-item",
-              {
-                key: wish.id,
-                attrs: { link: "" },
-                on: {
-                  click: function($event) {
-                    $event.stopPropagation()
-                    return _vm.goToLink(wish.id)
-                  }
-                }
-              },
               [
+                _c("v-list-item-avatar", { attrs: { color: "grey" } }),
+                _vm._v(" "),
                 _c(
-                  "v-row",
+                  "v-list-item-content",
                   [
-                    _c(
-                      "v-col",
-                      [
-                        _c(
-                          "v-list-item-content",
-                          [
-                            _c("v-list-item-title", [
-                              _c("h3", [
-                                _c("strong", [
-                                  _vm._v(
-                                    _vm._s(wish.wish_name) +
-                                      " / " +
-                                      _vm._s(wish.price)
-                                  )
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("v-list-item-subtitle", [
-                              _c("h5", [_vm._v(_vm._s(wish.description))])
-                            ]),
-                            _vm._v(" "),
-                            _c("v-list-item-subtitle", [
-                              _vm._v("Wish from: " + _vm._s(wish.name))
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
+                    _c("v-list-item-title", { staticClass: "headline" }, [
+                      _vm._v(_vm._s(wish.wish_name))
+                    ]),
                     _vm._v(" "),
-                    _c("v-col", [
-                      _c(
-                        "div",
-                        {},
-                        [
-                          _vm.images_available
-                            ? _c("v-img", {
-                                staticClass: "picture",
-                                attrs: { src: wish.wish_image }
-                              })
-                            : _vm._e()
-                        ],
-                        1
-                      )
+                    _c("v-list-item-subtitle", [
+                      _vm._v("by " + _vm._s(wish.name))
                     ])
                   ],
                   1
                 )
               ],
               1
-            )
-          }),
+            ),
+            _vm._v(" "),
+            _vm.images_available
+              ? _c("v-img", { attrs: { src: wish.wish_image, height: "194" } })
+              : _vm._e(),
+            _vm._v(" "),
+            _c("v-card-text", [
+              _vm._v("\n        " + _vm._s(wish.description) + "\n      ")
+            ])
+          ],
           1
         )
-      ],
+      }),
       1
     )
   ])
@@ -97770,7 +97739,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
 /* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
 /* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
 
@@ -97803,7 +97772,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VCol"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_7__["VImg"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItem"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemTitle"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VRow"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_7__["VImg"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemTitle"]})
 
 
 /* hot reload */
@@ -97913,8 +97882,8 @@ var opts = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timmy/Documents/school/laravel/wishlist/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/timmy/Documents/school/laravel/wishlist/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/timmy/Documents/school/github/wishlist/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/timmy/Documents/school/github/wishlist/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
