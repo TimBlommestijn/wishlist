@@ -14,11 +14,22 @@ class WishController extends Controller
      */
     public function index()
     {
-        $wishes = DB::table('users')
+        if(Auth::user() && Auth::user()->admin == 1){
+            $wishes = DB::table('users')
             ->join('wishes', 'users.id', '=', 'wishes.uuid')
             ->select('wishes.*','users.name')
             ->get();
-        return view('wish')->with(compact('wishes'));
+            return view('wish')->with(compact('wishes'));
+
+        } else if(Auth::user()){
+            $wishes = DB::table('users')
+            ->join('wishes', 'users.id', '=', 'wishes.uuid')
+            ->select('wishes.*','users.name')->where('wishes.uuid', Auth::user()->id)
+            ->get();
+            return view('wish')->with(compact('wishes'));
+
+        }
+        
     }
 
     /**
@@ -144,11 +155,14 @@ class WishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Wish $wish){
-        if(Auth::user()->admin){
+        $wishCheck = $wish->find($wish->id);
+        if(Auth::user()->admin == 1){
             $wish->destroy($wish->id);
+            Storage::delete($wishCheck->wish_image);
             return redirect('/wish');
         }else if(Auth::user()->id == $wish->uuid){
             $wish->destroy($wish->id);
+            Storage::delete('wish_images/'.$wishCheck->wish_image);
             return redirect('/wish');
         }else{
             return redirect('/');

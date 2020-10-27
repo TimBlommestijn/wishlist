@@ -9,7 +9,7 @@ import axios from 'axios';
 window.Vue = require('vue');
 
 import Vuetify from "../plugins/vuetify"
-
+import {store} from './store/store'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28,8 +28,12 @@ Vue.component('message-component', require('./components/MessageComponent.vue').
 Vue.component('signup-form', require('./components/SignupComponent.vue').default);
 Vue.component('login-form', require('./components/LoginComponent.vue').default);
 Vue.component('wishes-component', require('./components/WishesComponent.vue').default);
+Vue.component('wishes-screen-component', require('./components/screens/WishesScreenComponent.vue').default);
 Vue.component('wishes-create', require('./components/CreateWishComponent.vue').default);
 Vue.component('wish', require('./components/WishComponent.vue').default);
+Vue.component('wish-screen-component', require('./components/screens/WishScreenComponent.vue').default);
+Vue.component('home-screen-component', require('./components/screens/HomeScreenComponent.vue').default);
+
 
 
 /**
@@ -39,6 +43,7 @@ Vue.component('wish', require('./components/WishComponent.vue').default);
  */
 
 const app = new Vue({
+    store: store,
     vuetify: Vuetify,
     el: '#app',
 });

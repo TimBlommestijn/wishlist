@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('app')
-
-<welcome-message message="Welcome to the WishList Website"></welcome-message>
-<message-component message="the best wishlist website"></message-component>
+<home-screen-component :user="{{Auth::user() ? Auth::user() : json_encode('name')}}"></home-screen-component>
 @endsection
 @section('content')
    

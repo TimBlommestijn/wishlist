@@ -1,5 +1,4 @@
 <template>
-    <v-app>
       <div class="app mx-auto d-flex">
         <v-card v-for="wish in wishes" :key="wish.id"
           max-width="344"
@@ -19,20 +18,15 @@
             height="194"
             v-if="images_available"
           ></v-img>
-
           <v-card-text>
             {{wish.description}}
           </v-card-text>
         </v-card>
       </div>
-    </v-app>
 </template>
 
 <script>
 export default {
-    props:{
-        wishes: Array
-    },
     data () {
       return {
           images_available: false,
@@ -42,16 +36,21 @@ export default {
       if(this.wishes.length !== 0){
         this.addPathImage();
       }
-    },
-    created(){
 
     },
+    computed:{
+      wishes(){
+        return this.$store.state.wishes;
+      }
+    },
+    created(){
+      // this.setWishes()
+    },
     methods:{
+      setWishes(){
+        // this.$store.state.wishes = this.wishes;
+      },
       addPathImage(){
-        for (let i = 0; i < this.wishes.length; i++) {
-          const wish = this.wishes[i];
-          wish.wish_image = "/storage/wish_images/"+wish.wish_image;
-        }
         this.images_available = true;
       },
       goToLink(id){

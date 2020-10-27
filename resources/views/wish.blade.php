@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('app')
-    <wishes-component :wishes="{{$wishes}}"></wishes-component>
-
+    <wishes-screen-component :user="{{Auth::user() ? Auth::user() : json_encode('name')}}" :wishes="{{$wishes}}"></wishesScreen-component>
 @endsection
 

@@ -13,10 +13,10 @@
             <v-card-actions>
               <v-btn color="orange" @click.stop="goToUrl(wish[0].url, true)"  text> Get it </v-btn>
               <v-spacer></v-spacer>
-              <v-btn color="orange" @click.stop="goToUrl('/wish/'+wish[0].id+'/edit', false)" text>
+              <v-btn color="orange" v-if="editable" @click.stop="goToUrl('/wish/'+wish[0].id+'/edit', false)" text>
                 <v-icon>edit</v-icon>
               </v-btn>
-              <v-btn color="red" @click.stop="deletThis('/wish/'+wish[0].id, {id:wish[0].id})" text><v-icon>delete</v-icon></v-btn>
+              <v-btn color="red" v-if="editable" @click.stop="deletThis('/wish/'+wish[0].id, {id:wish[0].id})" text><v-icon>delete</v-icon></v-btn>
             </v-card-actions>
         </v-card>
       </div>
@@ -25,12 +25,18 @@
 
 <script>
 export default {
+    computed:{
+      wish(){
+        return this.$store.state.wish;
+      }
+    },
     props:{
-        wish: Array
+      user: Object,
     },
     data () {
       return {
           images_available: false,
+          editable: false,
       }
     },
     mounted(){
@@ -39,7 +45,11 @@ export default {
       }
     },
     created(){
-
+      if((typeof this.user === "object" || typeof this.user === 'function') && (this.user !== null)){
+        if(this.user.id == this.wish[0].uuid || this.user.admin){
+          this.editable = true
+        }else this.editable = false
+      }else this.editable = false
     },
     methods:{
       addPathImage(){

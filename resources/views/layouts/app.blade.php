@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <navbar-component :user="{{Auth::user() ? Auth::user() : json_encode('no')}}"></navbar-component>
+        <!-- <navbar-component :user="{{Auth::user() ? Auth::user() : json_encode('no')}}"></navbar-component> -->
         @yield('app')
     </div>
 </body>
